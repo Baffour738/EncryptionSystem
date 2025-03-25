@@ -3,18 +3,18 @@ from tkinter import ttk
 from cryptography.fernet import Fernet
 
 def generate_key():
-    """Generates a new encryption key."""
+    # Generates a new encryption key.
     key = Fernet.generate_key()
     return key
 
 def encrypt_message(message, key):
-    """Encrypts a message using the provided key."""
+    # Encrypts a message using the provided key.
     f = Fernet(key)
     encrypted_message = f.encrypt(message.encode())
     return encrypted_message
 
 def decrypt_message(encrypted_message, key):
-    """Decrypts an encrypted message using the provided key."""
+    # Decrypts an encrypted message using the provided key.
     try:
         f = Fernet(key)
         decrypted_message = f.decrypt(encrypted_message).decode()
@@ -23,7 +23,7 @@ def decrypt_message(encrypted_message, key):
         return f"Decryption Error: {e}"
 
 def encrypt_button_click():
-    """Handles the encryption button click event."""
+    # Handles the encryption button click event.
     message = message_entry.get("1.0", tk.END).strip()
     key_str = key_entry.get().strip()
 
@@ -42,7 +42,7 @@ def encrypt_button_click():
         result_text.insert(tk.END, f"Encryption Error: {e}")
 
 def decrypt_button_click():
-    """Handles the decryption button click event."""
+    # Handles the decryption button click event.
     encrypted_message_str = message_entry.get("1.0", tk.END).strip()
     key_str = key_entry.get().strip()
 
@@ -62,7 +62,7 @@ def decrypt_button_click():
         result_text.insert(tk.END, f"Decryption Error: {e}")
 
 def generate_key_button_click():
-    """Generates a new key and displays it."""
+    # Generates a new key and displays it.
     key = generate_key()
     key_entry.delete(0, tk.END)
     key_entry.insert(0, key.decode())
